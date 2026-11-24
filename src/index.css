@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Light Mode Semantic Surface & Text Variables */
+  --bg-canvas: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-muted: #F1F5F9;
+  --bg-surface-subtle: #F8FAFC;
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+
+  /* Brand Colors (Côte d'Ivoire Green & Orange) - Light Mode */
+  --brand-green: #0F5132;
+  --brand-green-hover: #0B3D26;
+  --brand-green-text: #0F5132;
+  --brand-orange: #EA580C;
+  --brand-orange-hover: #C2410C;
+  --brand-orange-text: #C2410C;
+
+  /* Skeleton Shimmer */
+  --skeleton-base: #E2E8F0;
+  --skeleton-highlight: rgba(255, 255, 255, 0.55);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Dark Mode Semantic Surface & Text Variables */
+  --bg-canvas: #090E17;
+  --bg-surface: #111827;
+  --bg-surface-muted: #1E293B;
+  --bg-surface-subtle: #162032;
+  --border-subtle: #1F2937;
+  --border-strong: #334155;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+
+  /* Brand Colors (Côte d'Ivoire Green & Orange) - Dark Mode Readable */
+  --brand-green: #15803D;
+  --brand-green-hover: #166534;
+  --brand-green-text: #34D399;
+  --brand-orange: #EA580C;
+  --brand-orange-hover: #F97316;
+  --brand-orange-text: #FB923C;
+
+  /* Skeleton Shimmer Dark */
+  --skeleton-base: #1E293B;
+  --skeleton-highlight: rgba(255, 255, 255, 0.08);
+}
+
+@theme inline {
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-surface-muted: var(--bg-surface-muted);
+  --color-surface-subtle: var(--bg-surface-subtle);
+  --color-line: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-hover: var(--brand-green-hover);
+  --color-brand-green-text: var(--brand-green-text);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-hover: var(--brand-orange-hover);
+  --color-brand-orange-text: var(--brand-orange-text);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+  }
+
+  .dark body {
+    letter-spacing: 0.005em;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Smooth GPU-composited shimmer for 3G/4G skeleton screens */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--skeleton-base);
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--skeleton-highlight) 50%,
+    transparent 100%
+  );
+  animation: marche-shimmer 1.35s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  will-change: transform;
+}
+
+@keyframes marche-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer::after {
+    animation: none;
+  }
+}

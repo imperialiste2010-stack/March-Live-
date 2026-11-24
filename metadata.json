@@ -1,0 +1,6 @@
+{
+  "name": "MARCHÉ LIVE",
+  "description": "Le vrai marché, en direct chez vous ! Marketplace ivoirienne en vidéo LIVE, choix interactif des marchandises, Mobile Money et livraison à domicile.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
